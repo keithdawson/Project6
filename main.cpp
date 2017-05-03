@@ -12,7 +12,7 @@ using namespace std;
 // Driver program to test above functions
 int main(int argc, char *argv[])
 {   int vertexes;
-	Vert * vertA;
+	Vert vertA[100000];
 	if ( argc < 1 ){ // argc should be 2 for correct execution
 		// We print argv[0] assuming it is the program name
 		cout<<"usage: "<< argv[0] <<" <filename> or 'random # #'\n";
@@ -34,18 +34,13 @@ int main(int argc, char *argv[])
 			vertexes = j / 2;
 		}
 		the_file.close();
-		Vert *vertB[vertexes];
-		vertA = *vertB;
 		// the_file is closed implicitly here
 		// We assume argv[1] is a filename to open
 		ifstream the_file2(argv[1]);
-		cout << "test1" << endl;
 		// Always check to see if file opening succeeded
 		if (!the_file2.is_open())
 			cout << "Could not open file\n";
 		else {
-			cout << "test0" << endl;
-
 			char x;
 			int c = 0;
 			bool boo = true;
@@ -60,7 +55,6 @@ int main(int argc, char *argv[])
 						boo = false;
 					}
 					else {
-						cout<< c  <<endl;
 						vertA[i].coordY = c;
 						i++;
 						boo = true;
@@ -70,18 +64,15 @@ int main(int argc, char *argv[])
 		}
 		the_file2.close();
 		// the_file is closed implicitly here
-		cout << "test11" << endl;
+
 	}
-	cout << "testLOL" << vertA[4].coordX << ' ' <<vertexes<<endl;
 	double graph[vertexes][vertexes];
 	for (int i=0;i<vertexes;i++){
-		for (int j=0;j<vertexes;i++){
-			cout<<vertA[i].coordX<<endl;
-			graph[i][j] = intdistanceCalculate(vertA[i].coordX, vertA[i].coordY, vertA[j].coordX, vertA[j].coordY);
-			//cout << graph[i][j];
+		for (int j=0;j<vertexes;j++){
+			graph[i][j] = distanceCalculate(vertA[i].coordX, vertA[i].coordY, vertA[j].coordX, vertA[j].coordY);
+			cout << graph[i][j]<< ' ';
 		}
 		cout << endl;
 	}
-	cout << "testing" << endl;
 	return 0;
 }
