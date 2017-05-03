@@ -16,11 +16,13 @@ double distanceCalculate(double x1, double y1, double x2, double y2)
 
 	return dist;
 }
+
 struct Vert
 {
 	double coordX, coordY;
 };
 
+/*
 // a structure to represent a weighted edge in graph
 struct Edge
 {
@@ -39,7 +41,7 @@ struct Graph
 	// to src. Both are counted as 1 edge here.
 	struct Edge* edge;
 };
-
+/*
 // Creates a graph with V vertices and E edges
 struct Graph* createGraph(int V, int E)
 {
@@ -154,3 +156,4 @@ void KruskalMST(struct Graph* graph)
 	return;
 }
 
+*/
