@@ -1,5 +1,4 @@
-// C++ program for Kruskal's algorithm to find Minimum Spanning Tree
-// of a given connected, undirected and weighted graph
+//Code by Blake Mizzell to implement Project5 for CS 101 using Prims algorithm with an adjacency graph
 using namespace std;
 #include <iostream>
 #include <fstream>
@@ -18,7 +17,7 @@ int main(int argc, char *argv[])
 		// We print argv[0] assuming it is the program name
 		cout<<"usage: "<< argv[0] <<" <filename> or 'random # #'\n";
 		return 0;}
-	else if( argv[1] != "random") {
+	if( argv[1] != "random") {
 		// We assume argv[1] is a filename to open
 		ifstream the_file(argv[1]);
 		// Always check to see if file opening succeeded
@@ -30,13 +29,13 @@ int main(int argc, char *argv[])
 			// the_file.get ( x ) returns false if the end of the file
 			//  is reached or an error occurs
 			while (the_file.get(x)) {
-				j++;
+				if(x >= '0' && x<= '9') j++;
 			}
 			vertexes = j / 2;
 		}
 		the_file.close();
-		Vert vertB[vertexes];
-		vertA = vertB;
+		Vert *vertB[vertexes];
+		vertA = *vertB;
 		// the_file is closed implicitly here
 		// We assume argv[1] is a filename to open
 		ifstream the_file2(argv[1]);
@@ -54,13 +53,18 @@ int main(int argc, char *argv[])
 			// the_file.get ( x ) returns false if the end of the file
 			//  is reached or an error occurs
 			while (the_file2.get(x)) {
-				c = x - '0';
-				if (boo) {
-					vertA[i].coordX = c;
-					boo = false;
-				} else {
-					vertA[i].coordY = c;
-					i++;
+				if(x >= '0' && x<= '9'){
+					c = x - '0';
+					if (boo) {
+						vertA[i].coordX = c;
+						boo = false;
+					}
+					else {
+						cout<< c  <<endl;
+						vertA[i].coordY = c;
+						i++;
+						boo = true;
+					}
 				}
 			}
 		}
@@ -68,14 +72,16 @@ int main(int argc, char *argv[])
 		// the_file is closed implicitly here
 		cout << "test11" << endl;
 	}
-	cout << "test2"<<endl;
+	cout << "testLOL" << vertA[4].coordX << ' ' <<vertexes<<endl;
 	double graph[vertexes][vertexes];
 	for (int i=0;i<vertexes;i++){
 		for (int j=0;j<vertexes;i++){
-			graph[i][j] = distanceCalculate(vertA[i].coordX, vertA[i].coordY, vertA[j].coordX, vertA[j].coordY);
-			cout << graph[i][j];
+			cout<<vertA[i].coordX<<endl;
+			graph[i][j] = intdistanceCalculate(vertA[i].coordX, vertA[i].coordY, vertA[j].coordX, vertA[j].coordY);
+			//cout << graph[i][j];
 		}
 		cout << endl;
 	}
+	cout << "testing" << endl;
 	return 0;
 }

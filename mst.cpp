@@ -5,7 +5,7 @@ using namespace std;
 #include <string.h>
 #include <math.h>
 
-double distanceCalculate(double x1, double y1, double x2, double y2)
+double intdistanceCalculate(int x1, int y1, int x2, int y2)
 {
 	double x = x1 - x2; //calculating number to square in next step
 	double y = y1 - y2;
